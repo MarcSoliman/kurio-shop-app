@@ -6,8 +6,8 @@ import "./productpagebody.scss";
 function ProductPageBody() {
   return (
     <div className="product-body-container">
-      <RightPanelProducts />
       <LeftPanel />
+      <RightPanelProducts />
     </div>
   );
 }

@@ -1,6 +1,53 @@
 .searchbar-wrapper {
-  background-color: red;
+  background-color: #fff;
   height: 100px;
-  margin-left: 80px;
-  margin-right: 80px;
+  display: flex;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  .top-bar,
+  .bottom-bar {
+    height: 1px;
+    width: 200px;
+    border-top: 2px solid rgb(226, 226, 226);
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+    display: flex;
+  }
+
+  .searchbar-list {
+    margin-top: 35px;
+    gap: 40px;
+    display: flex;
+    list-style: none;
+    padding-inline-start: 0;
+  }
+
+  .input-wrapper {
+    margin-left: auto;
+    bottom: 25%;
+    position: relative;
+    input {
+      margin-left: auto;
+      border: none;
+      background-color: rgb(245, 245, 245);
+      height: 42px;
+      width: 328px;
+      padding-left: 40px;
+
+      outline-style: none;
+    }
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 25%;
+    }
+  }
+
+  .bottom-bar {
+    position: absolute;
+    bottom: 0;
+  }
 }

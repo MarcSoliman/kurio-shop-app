@@ -23,6 +23,14 @@ const productsSchema = new mongoose.Schema({
 
 const Product = mongoose.model("Product", productsSchema);
 
+const usersSchema = new mongoose.Schema({
+  _id: { type: number, required: true },
+  username: { type: String, required: true },
+  password: { type: String, required: true },
+});
+
+const User = mongoose.model("User", usersSchema);
+
 // const product = new Product({
 //   _id: 1,
 //   name: "Facial Lotion",
@@ -59,6 +67,8 @@ app.get("/api", (req, res) => {
 //   console.log(productName);
 //   // mongoose.connection.close();
 // });
+
+app.post("/login", (req, res) => {});
 
 app.listen(5000, () => {
   console.log("Server started on port 5000");

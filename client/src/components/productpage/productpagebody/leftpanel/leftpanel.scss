@@ -1,3 +1,15 @@
 .left-panel {
-  background-color: rgb(226, 215, 63);
+  background-color: rgb(255, 255, 255);
+  flex: 0.3;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-inline-start: 0;
+    margin-top: 20px;
+    li {
+      list-style: none;
+    }
+  }
 }

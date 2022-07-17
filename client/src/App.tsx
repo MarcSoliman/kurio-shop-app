@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductPage from "./components/productpage/ProductPage";
+import "./App.scss";
+import "./fonts.scss";
 
 function App() {
   const [backendData, setBackendData]: Array<any> = useState([{}]);
