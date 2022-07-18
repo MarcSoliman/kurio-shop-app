@@ -24,7 +24,7 @@ const productsSchema = new mongoose.Schema({
 const Product = mongoose.model("Product", productsSchema);
 
 const usersSchema = new mongoose.Schema({
-  _id: { type: number, required: true },
+  _id: { type: Number, required: true },
   username: { type: String, required: true },
   password: { type: String, required: true },
 });
@@ -67,8 +67,34 @@ app.get("/api", (req, res) => {
 //   console.log(productName);
 //   // mongoose.connection.close();
 // });
+let currentUserID = "";
+app.post("/login", (req, res) => {
+  const name = req.body.username;
+  const pw = req.body.password;
 
-app.post("/login", (req, res) => {});
+  User.findOne({ username: name }, (err, user) => {
+    if (!err) {
+      if (user) {
+        if (user.password == pw) {
+          console.log(user.username);
+          currentUserID = user.id;
+          res.send(user.username);
+        } else {
+          console.log("Username or Password do not match!");
+        }
+      } else {
+        console.log("Username or Password do not match!");
+      }
+    } else {
+      console.log("error");
+    }
+  });
+});
+app.get("/login", (req, res) => {
+  res.json({ loginStatus: false });
+});
+
+app.get("/user", (req, res) => {});
 
 app.listen(5000, () => {
   console.log("Server started on port 5000");
