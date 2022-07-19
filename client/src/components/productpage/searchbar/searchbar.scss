@@ -9,8 +9,8 @@
   .top-bar,
   .bottom-bar {
     height: 1px;
-    width: 200px;
-    border-top: 2px solid rgb(226, 226, 226);
+    width: 100px;
+    border-top: 2px solid rgba(247, 247, 247, 0.774);
     border-bottom: 0;
     border-left: 0;
     border-right: 0;
@@ -30,7 +30,6 @@
     bottom: 25%;
     position: relative;
     input {
-      margin-left: auto;
       border: none;
       background-color: rgb(245, 245, 245);
       height: 42px;

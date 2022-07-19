@@ -1,0 +1,15 @@
+.right-panel {
+  background-color: rgba(248, 248, 248, 0.452);
+
+  flex: 0.8;
+
+  .products-wrapper {
+    display: flex;
+
+    align-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+
+    margin-bottom: 30px;
+  }
+}
