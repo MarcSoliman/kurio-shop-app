@@ -1,15 +1,43 @@
 const express = require("express");
-const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
+const passport = require("passport");
+const bcrypt = require("bcrypt");
+const session = require("express-session");
+const bodyParser = require("body-parser");
+const User = require("./user");
 
-app.use(cors());
-app.use(express.json());
+require("dotenv").config();
+const app = express();
+//--------------------------------------------------------------END OF IMPORTS------------------------------------------------
 
+//Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+require("./passportConfig")(passport);
+//--------------------------------------------------------------END OF MIDDLEWARE------------------------------------------------
+
+//connect to database
 mongoose.connect("mongodb://localhost:27017/kurioDB", {
   useNewUrlParser: true,
 });
 
+//Mongoose Schemas
 const productsSchema = new mongoose.Schema({
   _id: { type: Number, required: true },
   name: { type: String, required: true },
@@ -23,22 +51,6 @@ const productsSchema = new mongoose.Schema({
 
 const Product = mongoose.model("Product", productsSchema);
 
-const usersSchema = new mongoose.Schema({
-  _id: { type: Number, required: true },
-  username: { type: String, required: true },
-  password: { type: String, required: true },
-});
-
-const User = mongoose.model("User", usersSchema);
-
-// const product = new Product({
-//   _id: 1,
-//   name: "Facial Lotion",
-//   description: "Look confident, look like you.",
-//   rating: 5,
-// });
-
-// product.save();
 let productNames = [];
 
 Product.find((err, products) => {
@@ -50,52 +62,47 @@ Product.find((err, products) => {
     });
   }
 });
-
+//--------------------------------------------------------------END OF SCHEMAS------------------------------------------------
+//Routes
 app.get("/api", (req, res) => {
   res.json({ products: productNames });
 });
 
-// app.post("/api", (req, res) => {                   //testing post requests to mongodb
-//   const productName = req.body.name;
-//   const product = new Product({
-//     _id: 3,
-//     name: productName,
-//     description: "A custom product",
-//     rating: 2,
-//   });
-//   product.save();
-//   console.log(productName);
-//   // mongoose.connection.close();
-// });
-let currentUserID = "";
 app.post("/login", (req, res) => {
-  const name = req.body.username;
-  const pw = req.body.password;
+  passport.authenticate("local", (err, user, info) => {
+    if (err) throw err;
+    if (!user) res.send("No User Exists");
+    else {
+      req.logIn(user, (err) => {
+        if (err) throw err;
+        res.send("Successfully Authenticated");
+        console.log(req.user);
+      });
+    }
+  })(req, res);
+});
 
-  User.findOne({ username: name }, (err, user) => {
-    if (!err) {
-      if (user) {
-        if (user.password == pw) {
-          console.log(user.username);
-          currentUserID = user.id;
-          res.send(user.username);
-        } else {
-          console.log("Username or Password do not match!");
-        }
-      } else {
-        console.log("Username or Password do not match!");
-      }
-    } else {
-      console.log("error");
+app.post("/register", (req, res) => {
+  User.findOne({ username: req.body.username }, async (err, doc) => {
+    if (err) throw err;
+    if (doc) res.send("User Already Exists");
+    if (!doc) {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+      const newUser = new User({
+        username: req.body.username,
+        password: hashedPassword,
+      });
+      await newUser.save();
+      res.send("User Created");
     }
   });
 });
-app.get("/login", (req, res) => {
-  res.json({ loginStatus: false });
+
+app.get("/user", (req, res) => {
+  res.send(req.user);
 });
-
-app.get("/user", (req, res) => {});
-
+//--------------------------------------------------------------END OF ROUTES------------------------------------------------
+//Start Server
 app.listen(5000, () => {
   console.log("Server started on port 5000");
 });
