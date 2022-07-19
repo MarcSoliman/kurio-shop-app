@@ -1,6 +1,10 @@
 .product-wrapper {
-  margin-left: 60px;
+  width: 256px;
   margin-top: 48px;
+  display: flex;
+  justify-self: center;
+  flex-direction: column;
+
   h5 {
     font-weight: 400;
     margin-top: 5px;

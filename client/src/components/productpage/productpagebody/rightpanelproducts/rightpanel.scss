@@ -4,11 +4,10 @@
   flex: 0.8;
 
   .products-wrapper {
-    display: flex;
-
-    align-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 350px);
+    justify-content: center;
 
     margin-bottom: 30px;
   }
