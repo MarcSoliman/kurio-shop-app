@@ -1,13 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
 
-const [username, setUsername] = useState("");
-const [password, setPassword] = useState("");
-
-function login() {
+function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   return (
     <div>
-      {" "}
       <form>
         <input
           type="text"
@@ -70,4 +68,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;

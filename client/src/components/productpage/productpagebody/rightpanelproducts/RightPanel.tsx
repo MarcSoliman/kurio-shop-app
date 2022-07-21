@@ -3,7 +3,7 @@ import axios from "axios";
 import "./rightpanel.scss";
 import RightPanelProduct from "./RightPanelProduct";
 function RightPanel() {
-  let foo = [0, 1, 2, 3];
+  let foo = [0, 1, 2, 3, 4, 5];
   return (
     <div className="right-panel">
       <div className="products-wrapper">
