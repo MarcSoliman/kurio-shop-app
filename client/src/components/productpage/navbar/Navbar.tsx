@@ -5,7 +5,7 @@ import { RiShoppingBagLine } from "react-icons/ri";
 function Navbar() {
   return (
     <nav className="navbar">
-      <h1 className="title">Kurio.</h1>
+      <h1 className="navbar-title">Kurio.</h1>
       <ul className="navbar-list">
         <li>
           <BiUser />

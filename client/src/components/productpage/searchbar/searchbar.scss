@@ -4,21 +4,15 @@
   display: flex;
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 
-  .top-bar,
-  .bottom-bar {
-    height: 1px;
-    width: 100px;
-    border-top: 2px solid rgba(247, 247, 247, 0.774);
-    border-bottom: 0;
-    border-left: 0;
-    border-right: 0;
-    display: flex;
-  }
+  border-style: solid;
+  border-width: 3px 0 3px 0;
+  border-color: rgb(228, 228, 228);
 
   .searchbar-list {
-    margin-top: 35px;
     gap: 40px;
     display: flex;
     list-style: none;
@@ -27,14 +21,15 @@
 
   .input-wrapper {
     margin-left: auto;
-    bottom: 25%;
+
     position: relative;
+
     input {
       border: none;
+
       background-color: rgb(245, 245, 245);
-      height: 42px;
       width: 328px;
-      padding-left: 40px;
+      padding: 11px 0 11px 40px;
 
       outline-style: none;
     }
@@ -43,10 +38,5 @@
       left: 10px;
       top: 25%;
     }
-  }
-
-  .bottom-bar {
-    position: absolute;
-    bottom: 0;
   }
 }

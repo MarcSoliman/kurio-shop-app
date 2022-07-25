@@ -2,21 +2,34 @@
   background-color: #fff;
   height: 150px;
   display: flex;
+  flex-wrap: wrap;
 
-  .title {
+  .navbar-title {
     display: flex;
     align-items: center;
     font-weight: 400;
-    size: 30px;
+    font-size: 30px;
     font-family: "Prata", serif;
   }
 
   .navbar-list {
+    padding-inline-start: 0;
     margin-left: auto;
     align-items: center;
     display: flex;
     gap: 50px;
     list-style-type: none;
     font-family: "Work Sans", sans-serif;
+
+    li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 }

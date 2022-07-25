@@ -3,6 +3,7 @@
   height: 289px;
   display: flex;
   padding: 90px 80px 0 80px;
+  flex-wrap: wrap;
   .left {
     display: flex;
     flex-direction: column;
@@ -10,6 +11,9 @@
 
     h1 {
       margin-bottom: 20px;
+      font-family: "Prata", serif;
+      font-weight: 400;
+      font-size: 20px;
     }
 
     .copyright {
