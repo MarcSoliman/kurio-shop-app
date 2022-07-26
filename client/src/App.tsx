@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ProductPage from "./components/productpage/ProductPage";
-import LoginPage from "./components/login/Login";
+import LoginPage from "./components/login/login";
 import { Routes, Route } from "react-router-dom";
 import "./App.scss";
 import "./fonts.scss";
