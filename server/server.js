@@ -32,8 +32,12 @@ app.use(passport.session());
 require("./passportConfig")(passport);
 //--------------------------------------------------------------END OF MIDDLEWARE------------------------------------------------
 
+const uri =
+  "mongodb+srv://MarcSoli:" +
+  process.env.DB_PASS +
+  "@cluster0.fdbtfxm.mongodb.net/kurioDB?retryWrites=true&w=majority";
 //connect to database
-mongoose.connect("mongodb://localhost:27017/kurioDB", {
+mongoose.connect(uri, {
   useNewUrlParser: true,
 });
 
