@@ -107,6 +107,6 @@ app.get("/user", (req, res) => {
 });
 //--------------------------------------------------------------END OF ROUTES------------------------------------------------
 //Start Server
-app.listen(5000, () => {
-  console.log("Server started on port 5000");
+app.listen(8000, () => {
+  console.log("Server started on port 8000");
 });
